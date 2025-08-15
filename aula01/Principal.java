@@ -21,6 +21,5 @@ public class Principal {
             System.out.println(auxP.toString());
         }
 
-        No<Pessoa> LinkedListdePessoas = new No<Pessoa>();
     }
 }
