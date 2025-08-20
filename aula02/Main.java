@@ -35,7 +35,7 @@ public class Main {
         while(aux != null){
             System.out.println(aux.toString());
             aux = aux.getNextNo();
-        }
+        } 
 
     }
 }
