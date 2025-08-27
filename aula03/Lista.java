@@ -26,7 +26,6 @@ public class Lista<T> {
         this.ultimoNo = ultimoNo;
     }
 
-
     public void imprimeLista(){
         if(primeiroNo == null){
             System.out.println("Lista Vazia!");
@@ -50,6 +49,19 @@ public class Lista<T> {
         }
     }
 
+    public void removeInicio(){
+        if(primeiroNo == null){
+            System.out.println("Lista vazia");
+        }else{
+            System.out.println("Dado removido: " + primeiroNo);
+            primeiroNo = primeiroNo.getNextNo();
+
+            if(primeiroNo == ultimoNo){
+                ultimoNo.setDado(null);
+            }
+        }
+    }
+
     public void addFinal(T dado){
         No<T> novoNo = new No<T>(dado);
         if(primeiroNo == null){
@@ -60,6 +72,39 @@ public class Lista<T> {
         }
     }
 
+    // public void removeFinal(){
+    //      if(primeiroNo == null){
+    //         System.out.println("Lista vazia");
+    //     }else{
+    //         No<T> aux = primeiroNo;
+    //         while(aux != null){
+    //         if(aux.getNextNo() == ultimoNo){
+    //             No<T> NodeAjuda = aux;
+    //             ultimoNo = NodeAjuda;
+    //             ultimoNo.setNextNo(null);
+    //         }
+    //         aux = aux.getNextNo();
+
+    //         } 
+    //     }
+
+        
+    // }
+
+    public void removeFinal(){
+        if(primeiroNo == null){
+            System.out.println("Lista vazia");
+        }else{
+            No<T> aux = primeiroNo;
+            while(aux.getNextNo() != ultimoNo){
+                aux = aux.getNextNo();
+            }
+            ultimoNo = aux;
+            aux.setNextNo(null);
+
+        } 
+    }
+
     public void addMeio(T dado, T queroEncontrar){
         No<T> novoNo = new No<T>(dado);
         No<T> aux = primeiroNo;
@@ -67,9 +112,23 @@ public class Lista<T> {
                 if (aux.getDado() == queroEncontrar) {
                     novoNo.setNextNo(aux.getNextNo());
                     aux.setNextNo(novoNo);
+                    break;
                 }
-            
             aux = aux.getNextNo();
-        } 
+            } 
     }
+
+    // public void addMeio(T dado, T queroEncontrar){
+    //     No<T> novoNo = new No<T>(dado);
+    //     No<T> aux = primeiroNo;
+    //         while(aux != null){
+    //             if (aux.getDado() == queroEncontrar) {
+    //                 No<T> NodeAjuda = aux;
+    //                 novoNo.setNextNo(NodeAjuda.getNextNo());
+    //                 NodeAjuda.setNextNo(novoNo);
+    //             }
+            
+    //         aux = aux.getNextNo();
+    //     } 
+    // }
 }

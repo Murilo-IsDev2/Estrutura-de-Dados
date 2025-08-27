@@ -2,12 +2,15 @@ package aula03;
 public class Main {
     public static void main(String[] args) {
         Lista<String> lista = new Lista<>("Alunos");
-        lista.addInicio("Murilo");
-        lista.addInicio("Mauricin");
-        lista.addInicio("Rafael");
+        lista.addFinal("Murilo");
+        lista.addFinal("Mauricin");
+        lista.addFinal("Rafael");
         
-  
-        lista.addMeio("Murilo", "Mauricin");
-        lista.imprimeLista();
+        // lista.removeFinal();
+        lista.addMeio("Gel", "Mauricin");
+        
+
+        
+        lista.imprimeLista(); 
     }
 }
