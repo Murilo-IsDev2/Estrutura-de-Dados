@@ -118,17 +118,14 @@ public class Lista<T> {
             } 
     }
 
-    // public void addMeio(T dado, T queroEncontrar){
-    //     No<T> novoNo = new No<T>(dado);
-    //     No<T> aux = primeiroNo;
-    //         while(aux != null){
-    //             if (aux.getDado() == queroEncontrar) {
-    //                 No<T> NodeAjuda = aux;
-    //                 novoNo.setNextNo(NodeAjuda.getNextNo());
-    //                 NodeAjuda.setNextNo(novoNo);
-    //             }
-            
-    //         aux = aux.getNextNo();
-    //     } 
-    // }
+    public void removeMeio(T queroEncontrar){
+        No<T> aux = primeiroNo;
+            while(aux != null){
+                if (aux.getNextNo().getDado() == queroEncontrar) {
+                    aux.setNextNo(aux.getNextNo().getNextNo());
+                    break;
+                }
+            aux = aux.getNextNo();
+            } 
+    }
 }

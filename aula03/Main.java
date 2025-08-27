@@ -7,7 +7,7 @@ public class Main {
         lista.addFinal("Rafael");
         
         // lista.removeFinal();
-        lista.addMeio("Gel", "Mauricin");
+        lista.removeMeio("Mauricin");
         
 
         
