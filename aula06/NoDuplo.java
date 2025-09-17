@@ -1,5 +1,3 @@
-package aula06;
-
 public class NoDuplo<T> {
     private T dado;
     private NoDuplo<T> proximoNo;
@@ -45,8 +43,28 @@ public class NoDuplo<T> {
 
     @Override
     public String toString(){
-        return "{ Indice:" + getIndice() + "Dado" + getDado() + "}";
+        return "{ Indice:" + getIndice() + " Dado:" + getDado() + "}";
     }
 
 }
 
+/*public void RemoveMeio(int posicao){
+        if(posicao <= 0){
+            RemoveInicio();
+            return;
+        }
+        if (posicao >= tamanho-1) {
+            RemoveFinal();
+            return;
+        }
+        NoDuplo<T> atual = primeiroNo;
+        int indice = 0;
+
+        while(atual != null && indice < posicao){
+            atual = atual.getProximoNo();
+            indice++;
+        }
+        atual.getAnteriorNo().setProximoNo(atual.getProximoNo());
+        atual.getProximoNo().setAnteriorNo(atual.getAnteriorNo());
+
+    }*/ 

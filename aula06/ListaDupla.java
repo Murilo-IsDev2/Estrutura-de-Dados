@@ -1,6 +1,4 @@
-package aula06;
-
-public class ListaDupla<T> {
+public class ListaDupla<T>{
     private NoDuplo<T> primeiroNo;
     private NoDuplo<T> ultimoNo;
     private String nomeLista;
@@ -9,65 +7,169 @@ public class ListaDupla<T> {
     public ListaDupla(){
         this("Lista Dupla");
     }
+
     public ListaDupla(String nomeLista){
         this.nomeLista = nomeLista;
         this.primeiroNo = null;
         this.ultimoNo = null;
         this.tamanho = 0;
     }
-    public void atualizaIndice(){
-        NoDuplo<T> atual = primeiroNo;
-        int indice = 0;
 
-        while(atual != null){
-            atual.setIndice(indice);
-            atual.getProximoNo();
-            indice++;
-        }
-    }
-
-    public void AddInicio(T dado){
+    public void addInicio(T dado){
         NoDuplo<T> novoNo = new NoDuplo<T>(dado);
         if(primeiroNo == null){
-            primeiroNo = ultimoNo = novoNo;
+            primeiroNo = novoNo;
+            ultimoNo = novoNo;
         }else{
             novoNo.setProximoNo(primeiroNo);
             primeiroNo.setAnteriorNo(novoNo);
             primeiroNo = novoNo;
+        }
+        atualizaIndice();
+        tamanho++;
+    }
 
+    public void removeInicio(){
+        if(primeiroNo == null){
+            System.out.println("Lista Vazia.");
+        }else{
+            System.out.println("Dado " + primeiroNo.getDado() + " removido");
+            T dadoTemp = primeiroNo.getDado();
+            primeiroNo = primeiroNo.getProximoNo();
+            if(primeiroNo != null){
+                primeiroNo.setAnteriorNo(null);
+            }else{
+                ultimoNo = null;
+            }
+            
+            /*
+            if(primeiroNo.getProximoNo == null){
+                primeiroNo = null;
+                ultimoNo = null;
+                return null;
+            }else{
+                primeiroNo = primeiroNo.getProximoNo();
+                primeiroNo.setAnteriorNo(null);
+            }
+            */
             atualizaIndice();
-            this.tamanho++;
+            tamanho--;
             
         }
     }
-    public void AddFinal(T dado){
+
+    public void addMeio(T dado, int posicao){
+        if(posicao <= 0){
+            addInicio(dado);
+            return;
+        }
+
+        if(posicao >= tamanho){
+            addFinal(dado);
+            return;
+        }
+        
         NoDuplo<T> novoNo = new NoDuplo<T>(dado);
-         if(ultimoNo == null){
-            primeiroNo = ultimoNo = novoNo;
+        NoDuplo<T> atual = primeiroNo;
+        int indice = 0;
+
+        while (atual != null && indice < posicao) {
+            atual = atual.getProximoNo();
+            indice++;
+        }
+
+        //atual.getAnteriorNo().setProximoNo(novoNo);
+        //atual.setAnteriorNo(novoNo);
+        
+        NoDuplo<T> anterior = atual.getAnteriorNo();
+
+        novoNo.setProximoNo(atual);
+        novoNo.setAnteriorNo(atual.getAnteriorNo());
+
+        anterior.setProximoNo(novoNo);
+        atual.setAnteriorNo(novoNo);
+        
+        atualizaIndice();
+        tamanho++;
+
+    }
+    public void RemoveMeio(int posicao){
+        if(posicao <= 0){
+            removeInicio();
+            return;
+        }
+        if (posicao >= tamanho-1) {
+            removeFinal();
+            return;
+        }
+        NoDuplo<T> atual = primeiroNo;
+        int indice = 0;
+
+        while(atual != null && indice < posicao){
+            atual = atual.getProximoNo();
+            indice++;
+        }
+        atual.getAnteriorNo().setProximoNo(atual.getProximoNo());
+        atual.getProximoNo().setAnteriorNo(atual.getAnteriorNo());
+        atualizaIndice();
+        tamanho--;
+        System.out.println("Dado removido : " + atual.getDado());
+
+    }
+
+    public void removeFinal(){
+        if(ultimoNo == null){
+            System.out.println("Lista Vazia.");
+        }else{
+            System.out.println("Dado " + ultimoNo.getDado() + " removido");
+            ultimoNo = ultimoNo.getAnteriorNo();
+            if(ultimoNo != null){
+                ultimoNo.setProximoNo(null);
+            }else{
+                primeiroNo = null;
+            }
+            tamanho--;
+        }
+    }
+
+    public void addFinal(T dado){
+        NoDuplo<T> novoNo = new NoDuplo<T>(dado);
+        if (ultimoNo == null) {
+            primeiroNo = novoNo;
+            ultimoNo = novoNo;
         }else{
             novoNo.setAnteriorNo(ultimoNo);
             ultimoNo.setProximoNo(novoNo);
             ultimoNo = novoNo;
         }
+        //novoNo.setIndice(tamanho);
         atualizaIndice();
         tamanho++;
     }
-    // public int size(){
-    //     // return ultimoNo.getIndice() + 1;
-    // }
+
+    
 
     public void imprimeLista(){
-        NoDuplo<T> atual = primeiroNo;
         if (primeiroNo == null) {
-            System.out.println("Lista Vazia");
+            System.out.println("Lista Vazia.");
         }else{
-            while (atual != null) {
-                atual.toString();
-                atual = atual.getProximoNo();
+            System.out.println("Dados da Lista " + nomeLista);
+            NoDuplo<T> aux = primeiroNo;
+            while (aux != null) {
+                System.out.printf(" %s ",aux.toString());
+                aux = aux.getProximoNo();
             }
+            System.out.println();
         }
-
-        
     }
 
+    public void atualizaIndice(){
+        NoDuplo<T> atual = primeiroNo;
+        int indice = 0;
+        while (atual != null) {
+            atual.setIndice(indice);
+            atual = atual.getProximoNo();
+            indice++;
+        }
+    }
 }
