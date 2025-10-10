@@ -1,5 +1,3 @@
-
-
 public class Main {
     public static void main(String[] args) {
         Pilha<String> novaPilha = new Pilha<String>("Alfabeto");
