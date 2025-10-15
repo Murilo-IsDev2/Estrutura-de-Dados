@@ -140,4 +140,31 @@ public class ArvoreAVL {
         }
     }
      // fazer em ordem  e pós ordem
+    public void imprimirEmOrdem() {
+        imprimirEmOrdem(this.raiz);
+        System.out.println(); // Pula uma linha no final
+    }
+
+    private void imprimirEmOrdem(No no) {
+        if (no != null) {
+            imprimirEmOrdem(no.getEsquerda());
+            System.out.print(no.getDado() + " ");
+            
+            imprimirEmOrdem(no.getDireita());
+        }
+    }
+
+    public void imprimirPosOrdem() {
+        imprimirPosOrdem(this.raiz);
+        System.out.println(); // Pula uma linha no final
+    }
+
+    private void imprimirPosOrdem(No no) {
+        if (no != null) {
+            imprimirPosOrdem(no.getEsquerda());
+            imprimirPosOrdem(no.getDireita());
+            System.out.print(no.getDado() + " ");
+        }
+    }
+    
 }
