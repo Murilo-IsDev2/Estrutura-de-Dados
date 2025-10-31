@@ -1,4 +1,4 @@
-public class ArvoreAVL {
+ublic class ArvoreAVL {
 
     private No raiz;
 
