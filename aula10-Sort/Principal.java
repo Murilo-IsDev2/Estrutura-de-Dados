@@ -11,17 +11,65 @@ public class Principal {
             System.out.println("Erro ao ler o arquivo.");
             return;
         }
+        
         long startTime = System.nanoTime();
         long endTime = System.nanoTime();
 
         // Testando BubbleSort
         int[] bubbleArray = listToArray(numbers);
         startTime = System.nanoTime();
-        SelectionSort selectionSort = new SelectionSort();
-        selectionSort.sort(bubbleArray);
+        BubbleSort bubbleSort = new BubbleSort();
+        bubbleSort.sort(bubbleArray);
         endTime = System.nanoTime();
-        System.out.println("SelectionSort time: " + (endTime - startTime) / 1000000000 + " seconds");
-        writeNumbersToFile(arrayToList(bubbleArray), inputFileName, "selection");
+        System.out.println("BubbleSort time: " + (endTime - startTime) + " seconds");
+        writeNumbersToFile(arrayToList(bubbleArray), inputFileName, "bubble");
+
+        // Testando Merge
+        int[] mergeArray = listToArray(numbers);
+        startTime = System.nanoTime();
+        MergeSort mergeSort = new MergeSort();
+        mergeSort.sort(mergeArray);
+        endTime = System.nanoTime();
+        System.out.println("MergeSort time: " + (endTime - startTime) + " seconds");
+        writeNumbersToFile(arrayToList(mergeArray), inputFileName, "merge");
+
+        // Testando Insertion
+        int[] insertionArray = listToArray(numbers);
+        startTime = System.nanoTime();
+        InsertionSort insertionSort = new InsertionSort();
+        insertionSort.sort(insertionArray);
+        endTime = System.nanoTime();
+        System.out.println("insertionSort time: " + (endTime - startTime) + " seconds");
+        writeNumbersToFile(arrayToList(insertionArray), inputFileName, "insertion");
+
+        // Testando SelectionSort
+        int[] selectionArray = listToArray(numbers);
+        startTime = System.nanoTime();
+        SelectionSort selectionSort = new SelectionSort();
+        selectionSort.sort(selectionArray);
+        endTime = System.nanoTime();
+        System.out.println("selectionSort time: " + (endTime - startTime) + " seconds");
+        writeNumbersToFile(arrayToList(selectionArray), inputFileName, "selection");
+
+        // Testando BucketSort
+        int[] bucketArray = listToArray(numbers);
+        startTime = System.nanoTime();
+        BucketSort bucketSort = new BucketSort();
+        bucketSort.sort(bucketArray);
+        endTime = System.nanoTime();
+        System.out.println("bucketSort time: " + (endTime - startTime) + " seconds");
+        writeNumbersToFile(arrayToList(bucketArray), inputFileName, "bucket");
+
+        // Testando QuickSort
+        int[] quickArray = listToArray(numbers);
+        startTime = System.nanoTime();
+        QuickSort quickSort = new QuickSort();
+        quickSort.sort(quickArray);
+        endTime = System.nanoTime();
+        System.out.println("quickSort time: " + (endTime - startTime) + " seconds");
+        writeNumbersToFile(arrayToList(quickArray), inputFileName, "quick");
+
+
     }
 
     // Lê os números de um arquivo de texto
